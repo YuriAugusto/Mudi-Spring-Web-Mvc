@@ -12,14 +12,15 @@ import br.com.alura.mvc.mudi.repository.PedidoRepository;
 @Controller
 public class HomeController {
 	
-	//injeção de dependência, para funcionar a classe injetada deve possuir a anotação @Controller 
+	//@Autowired indica ao Spring que esse atributo irá receber uma instância por meio de injeção de 
+	//dependência e para funcionar a classe injetada deve possuir a anotação @Controller 
 	//ou @Repository, pois essas anotações permitem o spring gerenciar a classe 
 	@Autowired
-	private PedidoRepository pedidoRepository;
+	private PedidoRepository pedidoReposiroty;
 	
 	@GetMapping("/home")
 	public String home(Model model) {	
-		List<Pedido> pedidos = pedidoRepository.recuperaTodosOsPedidos();
+		List<Pedido> pedidos = pedidoReposiroty.findAll();
 		model.addAttribute("pedidos", pedidos);//aqui eu passo o array
 		return "home";
 	}
